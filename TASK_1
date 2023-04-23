@@ -1,0 +1,74 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <chrono>
+#include <thread>
+
+using namespace std;
+
+void print_horizontal_line(char symbol, string speed) {
+    string line(50, symbol);
+    if (speed == "fast") {
+        cout << line << endl;
+    }
+    else if (speed == "normal") {
+        for (int i = 0; i < 5; i++) {
+            cout << line << endl;
+            this_thread::sleep_for(chrono::milliseconds(500));
+        }
+    }
+    else if (speed == "slow") {
+        for (int i = 0; i < 5; i++) {
+            cout << line << endl;
+            this_thread::sleep_for(chrono::seconds(1));
+        }
+    }
+}
+
+void print_vertical_line(char symbol, string speed) {
+    if (speed == "fast") {
+        for (int i = 0; i < 50; i++) {
+            cout << symbol << endl;
+        }
+    }
+    else if (speed == "normal") {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 50; j++) {
+                cout << symbol << endl;
+            }
+            this_thread::sleep_for(chrono::milliseconds(500));
+        }
+    }
+    else if (speed == "slow") {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 50; j++) {
+                cout << symbol << endl;
+            }
+            this_thread::sleep_for(chrono::seconds(1));
+        }
+    }
+}
+
+int main() {
+    char symbol;
+    string line_type, speed;
+
+    cout << "Enter a symbol to use for the line: ";
+    cin >> symbol;
+    cout << "Enter 'h' for horizontal line or 'v' for vertical line: ";
+    cin >> line_type;
+    cout << "Enter 'fast', 'normal', or 'slow' for the speed of the line: ";
+    cin >> speed;
+
+    if (line_type == "h") {
+        print_horizontal_line(symbol, speed);
+    }
+    else if (line_type == "v") {
+        print_vertical_line(symbol, speed);
+    }
+    else {
+        cout << "Invalid line type." << endl;
+    }
+
+    return 0;
+}
