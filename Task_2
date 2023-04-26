@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    srand(time(NULL)); // set seed for random number generation
+    int userScore = 0; // stores the sum of the user's rolls
+    int computerScore = 0; // stores the sum of the computer's rolls
+    
+    cout << "Dice Game" << endl;
+    cout << "---------" << endl;
+    
+    for (int i = 0; i < 3; i++) { // loop for 3 rolls for each player
+        cout << "Roll #" << i+1 << endl;
+        // user roll
+        cout << "Your roll: ";
+        int userRoll1 = rand() % 6 + 1; // generate random number from 1 to 6
+        int userRoll2 = rand() % 6 + 1;
+        cout << userRoll1 << " " << userRoll2 << endl;
+        userScore += userRoll1 + userRoll2; // add score to user's sum
+        
+        // computer roll
+        cout << "Computer roll: ";
+        int computerRoll1 = rand() % 6 + 1;
+        int computerRoll2 = rand() % 6 + 1;
+        cout << computerRoll1 << " " << computerRoll2 << endl;
+        computerScore += computerRoll1 + computerRoll2;
+        
+        cout << endl;
+    }
+    
+    // determine winner
+    cout << "Results:" << endl;
+    cout << "Your score: " << userScore << endl;
+    cout << "Computer score: " << computerScore << endl;
+    
+    if (userScore > computerScore) {
+        cout << "You win!" << endl;
+    } else if (userScore < computerScore) {
+        cout << "Computer wins." << endl;
+    } else {
+        cout << "Tie game!" << endl;
+    }
+    
+    return 0;
+}
